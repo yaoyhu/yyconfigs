@@ -1,0 +1,234 @@
+{
+  "editor.fontSize": 16,
+  "terminal.integrated.fontSize": 16,
+  "editor.fontLigatures": true,
+  "workbench.startupEditor": "none",
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.highlightedyank.enable": true,
+  "vim.smartRelativeLine": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    },
+    {
+      "before": ["<Esc>"],
+      "after": ["<Esc>"],
+      "commands": ["workbench.action.files.save"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-n>"],
+      "commands": [":nohl"]
+    },
+    // {
+    //   "before": ["cc"],
+    //   "after": ["cc"],
+    //   "commands": ["editor.action.reindentselectedlines"]
+    // },
+    {
+      "before": ["g", "i"],
+      "commands": ["editor.action.goToImplementation"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["lineBreakInsert"],
+      "silent": true
+    },
+    {
+      "before": ["L"],
+      "after": ["$"]
+    },
+    {
+      "before": ["H"],
+      "after": ["^"]
+    },
+    {
+      "before": ["g", "p", "d"],
+      "commands": ["editor.action.peekDefinition"]
+    },
+    {
+      "before": ["g", "i"],
+      "commands": ["editor.action.goToImplementation"]
+    },
+    {
+      "before": ["g", "p", "i"],
+      "commands": ["editor.action.peekImplementation"]
+    },
+    {
+      "before": ["g", "q"],
+      "commands": ["editor.action.quickFix"]
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["editor.action.referenceSearch.trigger"]
+    },
+    {
+      "before": ["g", "t"],
+      "commands": ["editor.action.goToTypeDefinition"]
+    },
+    {
+      "before": ["g", "p", "t"],
+      "commands": ["editor.action.peekTypeDefinition"]
+    },
+    {
+      "before": ["g", "h"],
+      "commands": ["editor.action.showDefinitionPreviewHover"]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": ["H"],
+      "after": ["^"]
+    },
+    {
+      "before": ["L"],
+      "after": ["$"]
+    }
+  ],
+  "vim.leader": ",",
+  "vim.handleKeys": {
+    "<C-a>": true,
+    "<C-f>": true,
+    "<C-d>": true,
+    "<C-e>": true,
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // Controls if quick suggestions should show up while typing
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  // Controls whether suggestions should be accepted on commit characters. For example, in JavaScript, the semi-colon (`;`) can be a commit character that accepts a suggestion and types that character.
+  "editor.acceptSuggestionOnCommitCharacter": true,
+  // Controls if suggestions should be accepted on 'Enter' - in addition to 'Tab'. Helps to avoid ambiguity between inserting new lines or accepting suggestions. The value 'smart' means only accept a suggestion with Enter when it makes a textual change
+  "editor.acceptSuggestionOnEnter": "on",
+  // Controls the delay in ms after which quick suggestions will show up.
+  "editor.quickSuggestionsDelay": 100,
+  // Controls if suggestions should automatically show up when typing trigger characters
+  "editor.suggestOnTriggerCharacters": true,
+  // Controls if pressing tab inserts the best suggestion and if tab cycles through other suggestions
+  "editor.tabCompletion": "on",
+  // Controls whether sorting favours words that appear close to the cursor
+  "editor.suggest.localityBonus": true,
+  // Controls how suggestions are pre-selected when showing the suggest list
+  "editor.suggestSelection": "first",
+  // Enable word based suggestions
+  "editor.wordBasedSuggestions": "matchingDocuments",
+  // Enable parameter hints
+  "editor.parameterHints.enabled": true,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "[cpp]": {
+    "editor.defaultFormatter": "xaver.clang-format",
+    "editor.tabSize": 2
+  },
+  "[c]": {
+    "editor.defaultFormatter": "xaver.clang-format",
+    "editor.tabSize": 2,
+    "editor.quickSuggestions": {
+      "other": "on",
+      "comments": "on",
+      "strings": "on"
+    }
+  },
+  "[python]": {
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.tabSize": 4
+  },
+  "dictCompletion.leastNumOfChars": 3,
+  "indentRainbow.ignoreErrorLanguages": ["*"],
+  "indentRainbow.colorOnWhiteSpaceOnly": true,
+  "cmake.configureOnOpen": false,
+  "clangd.path": "/usr/bin/clangd",
+  "cmake.buildBeforeRun": false,
+  "cmake.autoSelectActiveFolder": false,
+  "vim.surround": true,
+  "clangd.arguments": [
+    "--function-arg-placeholders=false",
+    "--header-insertion=never",
+    "--log=verbose",
+    "--cross-file-rename",
+    "--clang-tidy",
+    "--all-scopes-completion",
+    "--pretty"
+  ],
+  "clangd.serverCompletionRanking": true,
+  "git.openRepositoryInParentFolders": "never",
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.inlayHints.enabled": "off",
+  "editor.smoothScrolling": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.accessibilitySupport": "off",
+  "terminal.integrated.fontWeightBold": "bold",
+  "editor.fontWeight": "normal",
+  // "editor.tokenColorCustomizations": {
+  //   "textMateRules": [
+  //     {
+  //       "scope": ["keyword"],
+  //       "settings": {
+  //         "fontStyle": "bold"
+  //       }
+  //     },
+  //     {
+  //       "scope": ["entity.name.function"],
+  //       "settings": {
+  //         "fontStyle": "bold"
+  //       }
+  //     },
+  //     {
+  //       "scope": "comment",
+  //       "settings": {
+  //         "fontStyle": "italic"
+  //       }
+  //     }
+  //   ]
+  // },
+  "terminal.integrated.fontWeight": "normal",
+  "editor.fontFamily": "SF Mono, Monaco, 'Courier New', monospace",
+  "python.formatting.provider": "none",
+  "cmake.cmakePath": "/opt/homebrew/bin/cmake",
+  "editor.formatOnSave": false,
+  "extensions.ignoreRecommendations": true,
+  "clangd.checkUpdates": false,
+  "clang-format.fallbackStyle": "Google",
+  "leetcode.defaultLanguage": "cpp",
+  "leetcode.endpoint": "leetcode-cn",
+  "leetcode.nodePath": "/opt/homebrew/opt/node@20/bin/node",
+  "leetcode.workspaceFolder": "/Users/yaoyhu/.leetcode",
+  "cmake.automaticReconfigure": false,
+  "cmake.configureOnEdit": false,
+  "material-icon-theme.folders.theme": "classic",
+  "leetcode.hint.commentDescription": false,
+  "leetcode.hint.commandShortcut": false,
+  "editor.stickyScroll.enabled": true,
+  "terminal.integrated.inheritEnv": false,
+  "lldb.suppressUpdateNotifications": true,
+  "cmake.showOptionsMovedNotification": false,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "cmake.configureSettings": {
+    "CMAKE_TOOLCHAIN_FILE": "[vcpkg root]/scripts/buildsystems/vcpkg.cmake"
+  },
+  "leetcode.hint.configWebviewMarkdown": false,
+  "hexeditor.columnWidth": 8,
+  "hexeditor.showDecodedText": true,
+  "hexeditor.defaultEndianness": "little",
+  "hexeditor.inspectorType": "aside",
+  "workbench.activityBar.location": "top",
+  "cmakeFormat.exePath": "/opt/homebrew/bin/cmake-format",
+  "workbench.colorTheme": "Default Dark+",
+  "security.promptForRemoteFileProtocolHandling": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "json.format.enable": false,
+  "editor.suggest.showWords": false
+}
