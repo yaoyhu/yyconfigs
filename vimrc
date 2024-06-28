@@ -1,8 +1,9 @@
 call plug#begin()
 
+" Plug 'takac/vim-hardtime'
 " Plug 'Shougo/echodoc.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'octol/vim-cpp-enhanced-highlight'
+" Plug 'octol/vim-cpp-enhanced-highlight'
 " Plug 'rizzatti/dash.vim'
 " Plug 'vim-autoformat/vim-autoformat'
 " Plug 'dense-analysis/ale'
@@ -19,7 +20,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sainnhe/gruvbox-material'
-Plug 'vim-python/python-syntax'
+" Plug 'vim-python/python-syntax'
 " Plug 'psf/black', { 'branch': 'stable' }
 
 " Plug 'ap/vim-buftabline'
@@ -35,8 +36,8 @@ Plug 'easymotion/vim-easymotion'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Plug 'mbbill/undotree'
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " Plug 'tpope/vim-fugitive'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'skywind3000/vim-preview'
@@ -71,9 +72,13 @@ let g:airline_theme='gruvbox'
 highlight Normal ctermbg=NONE
 "
 inoremap jj <esc>
+inoremap jk <esc>
 let mapleader=","
 nnoremap L $
 nnoremap H 0
+inoremap <C-e> <C-o>$
+inoremap <C-a> <C-o>0
+
 nnoremap <Leader>o o<Esc>
 nnoremap <Leader>O O<Esc>
 " set relativenumber " Show relative line numbers
@@ -160,9 +165,10 @@ let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 "CTRL+P 在当前项目目录打开文件搜索
 let g:Lf_ShortcutF = '<c-p>'
 " CTRL+N 打开 MRU搜索，搜索你最近打开的文件
+" noremap <D-s> <c-[> :w <CR>
 noremap <c-n> :LeaderfMru<cr>
 " Ctrl+f 打开函数搜索
-noremap <C-f> :LeaderfFunction!<cr>
+noremap <C-f> :LeaderfFunctionAll!<cr>
 " Ctrl+b 打开 Buffer 搜索
 noremap <C-b> :LeaderfBuffer<cr>
 noremap <C-t> :LeaderfBufTag<cr>
@@ -185,8 +191,7 @@ let g:vim_markdown_override_foldtext = 1
 vnoremap <C-c> "*y
 
 " Nerdcommenter
-" Create default mappings
-let g:NERDCreateDefaultMappings = 1
+map gcc <Plug>NERDCommenterToggle
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
@@ -243,13 +248,13 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 
 
 " highlighting c/c++
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-let g:cpp_posix_standard = 1
-let g:cpp_experimental_simple_template_highlight = 1
-let g:cpp_concepts_highlight = 1
-let g:python_highlight_all = 1
+" let g:cpp_class_scope_highlight = 1
+" let g:cpp_member_variable_highlight = 1
+" let g:cpp_class_decl_highlight = 1
+" let g:cpp_posix_standard = 1
+" let g:cpp_experimental_simple_template_highlight = 1
+" let g:cpp_concepts_highlight = 1
+" let g:python_highlight_all = 1
 
 " change cursor
 let &t_SI = "\e[6 q"
@@ -302,7 +307,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
-nnoremap <silent> K :call ShowDocumentation()<CR>
+nnoremap <silent> gh :call ShowDocumentation()<CR>
 
 set pumheight=30
 
@@ -318,7 +323,7 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming
-nmap <leader>rn <Plug>(coc-rename)
+nmap <silent> <F2> <Plug>(coc-rename)
 
 let b:coc_diagnostic_disable=0
 " coc-end
@@ -339,11 +344,70 @@ let g:airline_right_alt_sep = ''
 " autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " easy motion
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-
-nmap ss <Plug>(easymotion-overwin-f2)
-
+let g:EasyMotion_do_mapping = 1
+" map <Leader> <Plug>(easymotion-prefix)
 " Turn on case-insensitive feature
 let g:EasyMotion_smartcase = 1
 let g:echodoc#type = "echo" 
 set noshowmode
+
+" This is the default extra key bindings
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" An action can be a reference to a function that processes selected lines
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val, "lnum": 1 }'))
+  copen
+  cc
+endfunction
+
+""" fzf
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" Default fzf layout
+" - Popup window (center of the screen)
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
+" - Popup window (center of the current window)
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true } }
+
+" - Popup window (anchored to the bottom of the current window)
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 1.0 } }
+
+" - down / up / left / right
+let g:fzf_layout = { 'down': '40%' }
+
+" - Window using a Vim command
+let g:fzf_layout = { 'window': 'enew' }
+let g:fzf_layout = { 'window': '-tabnew' }
+let g:fzf_layout = { 'window': '10new' }
+
+" Customize fzf colors to match your color scheme
+" - fzf#wrap translates this to a set of `--color` options
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" Enable per-command history
+" - History files will be stored in the specified directory
+" - When set, CTRL-N and CTRL-P will be bound to 'next-history' and
+"   'previous-history' instead of 'down' and 'up'.
+let g:fzf_history_dir = ''
