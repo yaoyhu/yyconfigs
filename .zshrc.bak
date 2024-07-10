@@ -24,6 +24,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 alias cat="bat"
 alias ra="ranger"
 alias gcc="gcc-14"
+alias python="/opt/homebrew/bin/python3.11"
+alias vi="vim"
 
 eval $(thefuck --alias)
 eval "$(lua /Users/yaoyhu/.oh-my-zsh/plugins/z.lua/z.lua  --init zsh)"
@@ -59,7 +61,6 @@ eval "$(fzf --zsh)"
 autoload bashcompinit
 bashcompinit
 source /Users/yaoyhu/opt/vcpkg/scripts/vcpkg_completion.zsh
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-# bindkey '^ ' autosuggest-accept
+# export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+# export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
