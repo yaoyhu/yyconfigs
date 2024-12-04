@@ -2,7 +2,8 @@ export HOME=/Users/yaoyhu
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export ZSH="$HOME/.oh-my-zsh"
 export VCPKG_ROOT="$HOME/opt/vcpkg"
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
+ZSH_THEME=""
 
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
@@ -18,12 +19,11 @@ export EDITOR='vim'
 
 export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # alias clang++="clang++ -std=c++11 -Wall -Werror"
 alias cat="bat"
 alias ra="ranger"
-alias gcc="gcc-14"
 alias python="/opt/homebrew/bin/python3.11"
 alias vi="vim"
 
@@ -48,11 +48,12 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
-export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
-export HOMEBREW_NO_AUTO_UPDATE=1
+# export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
 export PATH="/opt/homebrew/Cellar/riscv-pk/main/riscv64-unknown-elf/bin:$PATH"
 export PATH="/opt/homebrew/Cellar/x86_64-unknown-linux-gnu/13.2.0/bin:$PATH"
 export PATH="/opt/homebrew/Cellar/riscv-gnu-toolchain/main/bin:$PATH"
+export PATH="/opt/homebrew/Cellar/qemu/9.1.0/bin:$PATH"
+export PATH="/opt/homebrew/Cellar/riscv64-elf-gdb/15.1/bin:$PATH"
 export CLASSPATH="~/opt/algs4.jar"
 
 export fzf_default_command='fd'
@@ -64,3 +65,15 @@ source /Users/yaoyhu/opt/vcpkg/scripts/vcpkg_completion.zsh
 # export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 # export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 # export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+# [ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
+
+autoload -U promptinit; promptinit
+prompt pure
+prompt_newline='%666v'
+# PURE_PROMPT_SYMBOL='>'
+PROMPT=" $PROMPT"
+print() {
+  [ 0 -eq $# -a "prompt_pure_precmd" = "${funcstack[-1]}" ] || builtin print "$@";
+}

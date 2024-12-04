@@ -1,9 +1,13 @@
 call plug#begin()
 
+" Plug 'SirVer/ultisnips'
+Plug 'tomasiser/vim-code-dark'
+Plug 'skywind3000/vim-cppman'
 " Plug 'takac/vim-hardtime'
 " Plug 'Shougo/echodoc.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'sheerun/vim-polyglot'
 " Plug 'rizzatti/dash.vim'
 " Plug 'vim-autoformat/vim-autoformat'
 " Plug 'dense-analysis/ale'
@@ -17,17 +21,16 @@ Plug 'skywind3000/gutentags_plus'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'sainnhe/gruvbox-material'
+" Plug 'sainnhe/gruvbox-material'
 " Plug 'vim-python/python-syntax'
+"Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 " Plug 'psf/black', { 'branch': 'stable' }
-
 " Plug 'ap/vim-buftabline'
-" Plug 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 " Plug 'bagrat/vim-buffet'
 " Plug 'ycm-core/YouCompleteMe'
-" Plug 'tomasiser/vim-code-dark'
 " Plug 'jaredgorski/SpaceCamp'
 " Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
@@ -48,10 +51,13 @@ Plug 'skywind3000/vim-preview'
 Plug 'tpope/vim-surround'
 " Plug 'lervag/vimtex'
 " Plug 'skywind3000/quickmenu.vim'
-" Plug 'skywind3000/asyncrun.vim'
+Plug 'skywind3000/asyncrun.vim'
 " Plug 'junegunn/vim-easy-align'
+Plug 'Mofiqul/vscode.nvim'
 
 call plug#end()
+
+let g:asyncrun_open = 8
 "
 " runtime! debian.vim
 "
@@ -62,15 +68,12 @@ set relativenumber
 set mouse=a
 set t_Co=256
 set t_ut=
-" set renderoptions=type:directx,gamma:1.5,contrast:0.5,geom:1,renmode:5,taamode:1,level:0.5
-let g:gruvbox_contrast_dark = 'hard'
-" let s:gb.dark0_hard  = ['#1d2021', 234]
-colorscheme gruvbox
-let g:airline_theme='gruvbox'
+set renderoptions=type:directx,gamma:1.5,contrast:0.5,geom:1,renmode:5,taamode:1,level:0.5
+colorscheme codedark
+let g:airline_theme='codedark'
+let g:codedark_conservative=0
 
-"
 highlight Normal ctermbg=NONE
-"
 inoremap jj <esc>
 inoremap jk <esc>
 let mapleader=","
@@ -83,6 +86,7 @@ nnoremap <Leader>o o<Esc>
 nnoremap <Leader>O O<Esc>
 " set relativenumber " Show relative line numbers
 set smartindent " 开启新行时使用智能自动缩进
+set nocompatible
 set tabstop=2
 set softtabstop=2
 set expandtab
@@ -156,7 +160,7 @@ let g:rainbow_conf = {
 " end rainbow
 
 " set clipboard=unnamedplus
-set clipboard=unnamed
+" set clipboard=unnamed
 
 " LeaderF
 " popup mode
@@ -187,8 +191,6 @@ let g:Lf_WindowPosition = 'popup'
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <leader><C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 let g:vim_markdown_override_foldtext = 1
-
-vnoremap <C-c> "*y
 
 " Nerdcommenter
 map gcc <Plug>NERDCommenterToggle
@@ -300,6 +302,10 @@ else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
+" scroll up/down for gh
+nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
+nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
+
 " GoTo code navigation
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -342,6 +348,7 @@ let g:airline_right_alt_sep = ''
 
 " let g:clang_format#auto_format = 1
 " autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+set formatoptions-=c formatoptions-=r formatoptions-=o
 
 " easy motion
 let g:EasyMotion_do_mapping = 1
