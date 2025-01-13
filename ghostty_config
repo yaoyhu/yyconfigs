@@ -1,0 +1,14 @@
+quit-after-last-window-closed=true
+window-theme=auto
+font-size=18
+# font-family=SF Mono Powerline
+font-family=Fira Code
+font-family=LXGW WenKai
+# theme=Apple System Colors
+theme=xcodedarkhc
+# theme=light:rose-pine-dawn,dark:rose-pine
+font-feature=-calt
+font-thicken
+# font-codepoint-map = "U+4E00-U+9FFF,U+3400-U+4DBF = LXGW WenKai"
+window-height = 80
+window-width = 30
